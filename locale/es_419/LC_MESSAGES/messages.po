@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 18:15+0000\n"
+"POT-Creation-Date: 2017-08-07 01:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Juan Camilo Montoya Franco <juan.montoya@edunext.co>, 2017\n"
+"Last-Translator: fco.aguilarm <fco.aguilarm@gmail.com>, 2017\n"
 "Language-Team: Spanish (Latin America) (https://www.transifex.com/open-edx/"
 "teams/6205/es_419/)\n"
 "Language: es_419\n"
@@ -25,32 +25,35 @@ msgstr "Conoce a los Instructores"
 
 #: views/program-detail.html:72
 msgid "The %(type)s"
-msgstr ""
+msgstr "Los%(type)s"
 
 #: views/program-detail.html:82
 msgid "Skip the %(type)s Main Overview"
-msgstr ""
+msgstr "Omitir los%(type)s Vista Principal"
 
 #: views/program-detail.html:90
 msgid ""
 "A series of courses that add up to a rich understanding of an area of study."
 msgstr ""
+"Series de cursos que suman a un rico entendimiento de un área de estudio."
 
 #: views/program-detail.html:92
 msgid "A series of credit-eligible courses recognized by industry."
-msgstr ""
+msgstr "Series de cursos elegibles para créditos reconocidos por la industria."
 
 #: views/program-detail.html:94
 msgid "A series of career-oriented courses to develop in-demand skills."
 msgstr ""
+"Series de cursos orientados a carrera para desarrollar habilidades en "
+"demanda."
 
 #: views/program-detail.html:106
 msgid "See more"
-msgstr ""
+msgstr "Ver más"
 
 #: views/program-detail.html:108
 msgid "about %(title)s"
-msgstr ""
+msgstr "sobre %(title)s"
 
 #: views/program-detail.html:117
 msgid "Hide"
@@ -58,11 +61,11 @@ msgstr "Ocultar"
 
 #: views/program-detail.html:189
 msgid "%(type)s Details"
-msgstr ""
+msgstr "%(type)s Detalles"
 
 #: views/program-detail.html:192
 msgid "About %(type)s"
-msgstr ""
+msgstr "Sobre %(type)s"
 
 #: views/program-detail.html:199
 msgid "Courses"
@@ -74,8 +77,18 @@ msgstr "Instructores"
 
 #: views/program-detail.html:224
 msgid "bio for %(title)s"
-msgstr ""
+msgstr "bio para %(title)s "
 
 #: views/program-detail.html:248
 msgid "View a PDF of a sample %(type)s Certificate"
-msgstr ""
+msgstr "Ver un PDF como ejemplo %(type)s Certificado"
+
+#: views/person-detail.html:5 views/person-detail.html:8
+#: views/person-detail.html:18
+msgid "Image of %(name)s"
+msgstr "Imagen de %(name)s"
+
+#: views/person-detail.html:28 views/person-detail.html:27
+#: views/person-detail.html:37
+msgid "Courses taught by %(name)s"
+msgstr "Cursos impartidos por %(name)s"

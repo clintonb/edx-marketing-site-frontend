@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 18:15+0000\n"
+"POT-Creation-Date: 2017-08-07 01:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -77,3 +77,13 @@ msgstr "bio for %(title)s"
 #: views/program-detail.html:248
 msgid "View a PDF of a sample %(type)s Certificate"
 msgstr "View a PDF of a sample %(type)s Certificate"
+
+#: views/person-detail.html:5 views/person-detail.html:8
+#: views/person-detail.html:18
+msgid "Image of %(name)s"
+msgstr ""
+
+#: views/person-detail.html:28 views/person-detail.html:27
+#: views/person-detail.html:37
+msgid "Courses taught by %(name)s"
+msgstr ""

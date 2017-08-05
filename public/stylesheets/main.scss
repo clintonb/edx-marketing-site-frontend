@@ -1,8 +1,84 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import '~edx-bootstrap/sass/edx/theme';
+@import '~bootstrap/scss/bootstrap';
 
-a {
-  color: #00B7FF;
+.person-detail {
+  @extend .container;
+  @extend .pb-5;
+
+  .profile-image-and-name {
+    @extend .row;
+
+    .profile-image-outer {
+      @extend .col-12;
+      @extend .col-md-2;
+
+      .profile-image {
+        border-radius: 100%;
+        padding: 5px;
+        border: 2px solid #dadada;
+        height: 120px;
+        width: 120px;
+      }
+    }
+    .name-and-position-outer {
+      @extend .mt-3;
+      @extend .mt-md-0;
+      @extend .col-12;
+      @extend .col-md-10;
+
+      .name {
+      }
+      .position {
+        .title {
+        }
+        .organization {
+        }
+      }
+    }
+  }
+
+  .bio-outer {
+    @extend .row;
+
+    .bio {
+      @extend .col-12;
+      @extend .mt-4;
+    }
+  }
+
+  .course-runs-outer {
+    @extend .row;
+
+    .heading {
+      @extend .col-12;
+    }
+
+    .course-runs {
+      display: flex;
+      flex-wrap: wrap;
+
+      // We are applying the same padding as col-*, but not using col-12 to avoid
+      // breaking the flex box.
+      padding-left: ($grid-gutter-width-base / 2);
+      padding-right: ($grid-gutter-width-base / 2);
+
+      // Ensure the flex box doesn't overflow beyond the width of smaller screens.
+      max-width: 100%;
+
+      .course-run-outer {
+        @extend .col-12;
+        @extend .col-md-4;
+        display: flex;
+        flex-direction: column;
+
+        .course-run {
+          @extend .card;
+          @extend .mb-3;
+
+          cursor: pointer;
+          flex: 1;
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+<!--
+    Preload the profile and course run images to avoid blocking rendering later.
+    See https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content for more info.
+-->
+{% for url in preloaded_images %}
+<link rel="preload" href="{{ url }}" as="image">
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+{% set profile_image_alt_text = format( gettext('Image of %(name)s'), {name: person.name}) %}
+<div class="person-detail">
+    <div class="profile-image-and-name">
+        <div class="profile-image-outer">
+            <img class="profile-image" src="{{ person.profile_image_url }}" alt="{{ profile_image_alt_text }}"
+                 title="{{ profile_image_alt_text }}" height="120px" width="120px"/>
+        </div>
+        <div class="name-and-position-outer">
+            <span class="name">{{ person.name }}</span>
+
+            <div class="position">
+                <div class="title">{{ person.position.title }}</div>
+                <div class="organization">{{ person.position.organization_name }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="bio-outer">
+        <div class="bio">
+            {{ person.bio|safe }}
+        </div>
+    </div>
+    <hr>
+
+    <div class="course-runs-outer">
+        <h2 class="heading">{{ format( gettext('Courses taught by %(name)s'), {name: person.name}) }}</h2>
+        <!--
+            Responsive support for cards/decks isn't yet ready. This row is here to make it work.
+            More info at https://github.com/twbs/bootstrap/issues/20321.
+         -->
+        <div class="row">
+            <div class="course-runs card-deck">
+                {% for course_run in person.course_runs %}
+                <div class="course-run-outer">
+                    <div class="course-run card" onclick="location.href='{{ course_run.marketing_url }}';">
+                        <img class="card-img-top" src="{{ course_run.image_url }}" alt="Card image cap">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ course_run.title }}</h4>
+                            <p class="card-text">{{ course_run.short_description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ course_run.availability }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

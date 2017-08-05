@@ -2,8 +2,11 @@ const BundleTracker = require('webpack-bundle-tracker');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 const S3Plugin = require('webpack-s3-plugin');
 
 const baseTemplatePath = './views/base.html';
@@ -36,10 +39,27 @@ const config = {
     new CleanWebpackPlugin(pathsToClean, {watch: true}),
     new BundleTracker({filename: './webpack-stats.json'}),
     new ExtractTextPlugin('[name]-[hash].css'),
+    // NOTE (CCB): Purify CSS breaks the course cards (probably because they rely on media breakpoints).
+    // We cannot enable this plugin until this issue is resolved.
+    // new PurifyCSSPlugin({
+    //   minimize: false,
+    //   moduleExtensions: ['.html'],
+    //   paths: glob.sync(path.join(__dirname, 'views/**/!(base.html)*')),
+    //   purifyOptions: {
+    //     rejected: true,
+    //   },
+    //   verbose: true,
+    // }),
     new HtmlWebpackPlugin({
       filename: path.resolve(baseTemplatePath),
       inject: 'body',
       template: 'views/base.tpl.html'
+    }),
+    new PreloadWebpackPlugin({
+      include: 'all',
+      // CSS support is not yet available.
+      // See https://github.com/GoogleChrome/preload-webpack-plugin/issues/18 for updates.
+      fileBlacklist: [/\.css/]
     }),
     new FaviconsWebpackPlugin({
       logo: './public/images/favicon.png',

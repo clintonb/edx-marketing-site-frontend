@@ -100,6 +100,38 @@ class DiscoveryService {
       });
     });
   }
+
+  /**
+   * Retrieves the person linked to the specified slug (URL path).
+   * @param {string} slug
+   */
+  getPerson(slug) {
+    console.log(`Retrieving person with slug ${slug} from Discovery Service...`);
+    return this.ensureAccessToken().then(() => {
+      const options = {
+        uri: this.buildApiUrl(`people/?slug=${slug}`),
+        headers: {
+          'Authorization': `JWT ${this.accessToken}`
+        },
+        json: true
+      };
+
+      return rp(options).then((res) => {
+        const person = res.results[0];
+
+        // Retrieve the course runs associated with this person
+        options.uri = this.buildApiUrl(`search/course_runs/facets/?staff_uuids=${person.uuid}`);
+
+        // FIXME get the correct program with one call
+        // Call the API again to get the complete details
+        return rp(options).then((res) => {
+          person.course_runs = res.objects.results;
+          return person;
+        });
+      });
+    });
+
+  }
 }
 
 module.exports = DiscoveryService;

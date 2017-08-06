@@ -5,7 +5,7 @@
   "scripts": {
     "build": "NODE_ENV=production AWS_PROFILE=claudia CDN_ROOT=https://d17shfn88f2e0o.cloudfront.net S3_BUCKET_NAME=clintonb-edx-marketing webpack -p",
     "compile-translations": "compile-json ./locale ./public/i18n",
-    "deploy": "AWS_PROFILE=claudia claudia update",
+    "deploy": "npm run compile-translations && npm run build && AWS_PROFILE=claudia claudia update && AWS_PROFILE=claudia node scripts/invalidate-cloudfront.js",
     "extract-translations": "jsxgettext --join-existing -L jinja --output-dir=./locale/templates/LC_MESSAGES --output=messages.pot `find . -name '*.html' | grep -v node_modules | grep -v \".git\"` && merge-po ./locale",
     "pull-translations": "tx pull",
     "push-translations": "tx push -s",

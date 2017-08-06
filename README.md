@@ -23,6 +23,14 @@ Static assets are compiled by Webpack and pushed to S3.
 Application code is deployed to AWS API Gateway + Lambda (server code) using [ClaudiaJS](https://claudiajs.com/). 
 
     $ npm run deploy
+    
+### Scheduled Event
+
+Scheduled events can be created in CloudWatch to periodically poll the Lambda to prevent cold starts. The command below
+will create a new scheduled event that makes a GET request to the health endpoint (`/health`) every 15 minutes.
+
+    $ AWS_PROFILE=claudia ./node_modules/.bin/claudia add-scheduled-event --event ./schedule.json --name warmer --schedule "rate(15 minutes)"
+
 
 ## Internationalization (i18n)
 

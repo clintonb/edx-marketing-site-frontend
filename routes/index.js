@@ -2,6 +2,10 @@ const DiscoveryService = require('../services/discovery');
 const express = require('express');
 const router = express.Router();
 
+router.get('/health', function(req, res, next) {
+  res.json({'overall_status': 'OK'})
+});
+
 router.get('/:programType(micromasters|professional-certificate|xseries)/:marketingSlug([\\w-]+)',
   function(req, res, next) {
     // TODO Catch not found errors, and render the 404 page.

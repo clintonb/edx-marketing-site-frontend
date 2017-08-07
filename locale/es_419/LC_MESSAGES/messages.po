@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 01:55+0000\n"
+"POT-Creation-Date: 2017-08-07 03:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: fco.aguilarm <fco.aguilarm@gmail.com>, 2017\n"
 "Language-Team: Spanish (Latin America) (https://www.transifex.com/open-edx/"
@@ -67,7 +67,7 @@ msgstr "%(type)s Detalles"
 msgid "About %(type)s"
 msgstr "Sobre %(type)s"
 
-#: views/program-detail.html:199
+#: views/program-detail.html:199 views/_navbar.html:14
 msgid "Courses"
 msgstr "Cursos"
 
@@ -89,6 +89,42 @@ msgid "Image of %(name)s"
 msgstr "Imagen de %(name)s"
 
 #: views/person-detail.html:28 views/person-detail.html:27
-#: views/person-detail.html:37
+#: views/person-detail.html:37 views/person-detail.html:38
 msgid "Courses taught by %(name)s"
 msgstr "Cursos impartidos por %(name)s"
+
+#: views/_navbar.html:9
+msgid "%(site_name)s home page"
+msgstr "Página de inicio de %(courseName)s."
+
+#: views/_navbar.html:17
+msgid "Programs"
+msgstr "Programas"
+
+#: views/_navbar.html:20
+msgid "Schools & Partners"
+msgstr "Universidades"
+
+#: views/_navbar.html:23
+msgid "About"
+msgstr "Acerca de"
+
+#: views/_navbar.html:27 views/_navbar.html:28
+msgid "Search"
+msgstr "Buscar"
+
+#: views/_navbar.html:37
+msgid "Dashboard"
+msgstr "Panel de información"
+
+#: views/_navbar.html:38
+msgid "Profile"
+msgstr "Perfil"
+
+#: views/_navbar.html:39
+msgid "Account"
+msgstr "Cuenta"
+
+#: views/_navbar.html:40
+msgid "Sign Out"
+msgstr "Cerrar sesión"

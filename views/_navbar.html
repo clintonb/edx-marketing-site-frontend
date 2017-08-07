@@ -1,0 +1,45 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded mb-4">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand mx-auto" href="#">
+        <img src="https://www.edx.org/sites/default/files/theme/edx-logo-header.png" height="30px" width="60px"
+             alt="{{ format( gettext('%(site_name)s home page'), {site_name: SITE_NAME}) }}">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.edx.org/course?course=all">{{ gettext('Courses') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.edx.org/course?program=all">{{ gettext('Programs') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.edx.org/schools-partners">{{ gettext('Schools & Partners') }}</a>
+            </li>
+            <li class="nav-item mr-auto">
+                <a class="nav-link" href="https://www.edx.org/about-us">{{ gettext('About') }}</a>
+            </li>
+        </ul>
+        <form class="form-inline mr-auto" method="GET" action="https://www.edx.org/course">
+            <input class="form-control mr-sm-2" type="text" name="search_query" placeholder="{{ gettext('Search') }}">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">{{ gettext('Search') }}</button>
+        </form>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://courses.edx.org/dashboard" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    demo_user
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">{{ gettext('Dashboard') }}</a>
+                    <a class="dropdown-item" href="#">{{ gettext('Profile') }}</a>
+                    <a class="dropdown-item" href="#">{{ gettext('Account') }}</a>
+                    <a class="dropdown-item" href="#">{{ gettext('Sign Out') }}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

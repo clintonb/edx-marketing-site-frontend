@@ -8,6 +8,7 @@ const path = require('path');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const S3Plugin = require('webpack-s3-plugin');
+const webpack = require('webpack');
 
 const baseTemplatePath = './views/base.html';
 const outputPath = './public/bundles/';
@@ -26,6 +27,7 @@ const config = {
   devtool: 'source-map',
 
   entry: {
+    'base': './public/js/base.js',
     'main.style': './public/stylesheets/main.scss',
   },
 
@@ -59,7 +61,8 @@ const config = {
       include: 'all',
       // CSS support is not yet available.
       // See https://github.com/GoogleChrome/preload-webpack-plugin/issues/18 for updates.
-      fileBlacklist: [/\.css/]
+      // We do not need to preload map files
+      fileBlacklist: [/\.(css|map)/]
     }),
     new FaviconsWebpackPlugin({
       logo: './public/images/favicon.png',
@@ -77,6 +80,24 @@ const config = {
         yandex: false,
         windows: false
       },
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Tether: 'tether',
+      'window.Tether': 'tether',
+      Alert: 'exports-loader?Alert!bootstrap/js/dist/alert',
+      Button: 'exports-loader?Button!bootstrap/js/dist/button',
+      Carousel: 'exports-loader?Carousel!bootstrap/js/dist/carousel',
+      Collapse: 'exports-loader?Collapse!bootstrap/js/dist/collapse',
+      Dropdown: 'exports-loader?Dropdown!bootstrap/js/dist/dropdown',
+      Modal: 'exports-loader?Modal!bootstrap/js/dist/modal',
+      Popover: 'exports-loader?Popover!bootstrap/js/dist/popover',
+      Scrollspy: 'exports-loader?Scrollspy!bootstrap/js/dist/scrollspy',
+      Tab: 'exports-loader?Tab!bootstrap/js/dist/tab',
+      Tooltip: 'exports-loader?Tooltip!bootstrap/js/dist/tooltip',
+      Util: 'exports-loader?Util!bootstrap/js/dist/util',
     }),
   ],
 
@@ -96,7 +117,7 @@ const config = {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: true
+                sourceMap: isProduction
               }
             }
           ]
@@ -118,12 +139,16 @@ const config = {
         query: {
           name: 'font/[name]-[hash].[ext]'
         }
-      }
+      },
+      {
+        test: /bootstrap\/dist\/js\/umd\//,
+        use: 'imports-loader?jQuery=jquery'
+      },
     ]
   },
   resolve: {
     modules: ['./node_modules'],
-    extensions: ['.css', '.scss']
+    extensions: ['.js', '.css', '.scss']
   }
 };
 

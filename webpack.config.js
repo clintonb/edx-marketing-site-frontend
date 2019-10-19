@@ -1,6 +1,6 @@
 const BundleTracker = require('webpack-bundle-tracker');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -37,7 +37,7 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(pathsToClean, {watch: true}),
     new BundleTracker({filename: './webpack-stats.json'}),
-    new ExtractTextPlugin('[name]-[hash].css'),
+    new MiniCssExtractPlugin('[name]-[hash].css'),
     // NOTE (CCB): Purify CSS breaks the course cards (probably because they rely on media breakpoints).
     // We cannot enable this plugin until this issue is resolved.
     // new PurifyCSSPlugin({
@@ -55,10 +55,7 @@ const config = {
       template: 'views/base.tpl.html'
     }),
     new PreloadWebpackPlugin({
-      include: 'all',
-      // CSS support is not yet available.
-      // See https://github.com/GoogleChrome/preload-webpack-plugin/issues/18 for updates.
-      fileBlacklist: [/\.(css|map)/]
+      include: 'allChunks',
     }),
     // FIXME The 64x64 .ico file is 32KB. This is unnaceptable. Until this is resolved, we will manually handle
     // these files.
@@ -85,23 +82,17 @@ const config = {
     rules: [
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: isProduction,
-                sourceMap: true,
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true
-              }
-            }
-          ]
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
       {
         test: /\.woff2?$/,

@@ -28,6 +28,8 @@ const config = {
     'app': './public/js/app.js',
   },
 
+  mode: 'development',
+
   output: {
     path: path.resolve(outputPath),
     filename: '[name]-[hash].js',
@@ -83,11 +85,7 @@ const config = {
       {
         test: /\.s?css$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          // Creates `style` nodes from JS strings
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
@@ -115,11 +113,15 @@ const config = {
   },
   resolve: {
     modules: ['./node_modules'],
-    extensions: ['.js', '.css', '.scss']
+    extensions: ['.js', '.css', '.scss'],
+    alias: {
+      bootstrap: path.resolve(__dirname, 'node_modules/bootstrap')
+    }
   }
 };
 
 if (isProduction) {
+  config.mode = 'production';
   config.output.publicPath = `${process.env.CDN_ROOT}/${publicPath}`;
   config.plugins.push(
     new S3Plugin({

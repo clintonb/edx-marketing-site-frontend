@@ -1,4 +1,4 @@
-@import 'bootstrap';
+@import "~@edx/edx-bootstrap/scss/edx/theme.scss";
 
 .person-detail {
   @extend .container;
@@ -55,11 +55,6 @@
     .course-runs {
       display: flex;
       flex-wrap: wrap;
-
-      // We are applying the same padding as col-*, but not using col-12 to avoid
-      // breaking the flex box.
-      padding-left: ($grid-gutter-width-base / 2);
-      padding-right: ($grid-gutter-width-base / 2);
 
       // Ensure the flex box doesn't overflow beyond the width of smaller screens.
       max-width: 100%;

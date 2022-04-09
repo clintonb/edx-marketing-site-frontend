@@ -32,7 +32,7 @@
     "express": "~4.17.1",
     "i18n-abide": "0.0.26",
     "memory-cache": "^0.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "morgan": "~1.9.1",
     "nunjucks": "^3.2.0",
     "request": "^2.88.0",

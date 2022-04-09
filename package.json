@@ -39,7 +39,7 @@
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
-    "ajv": "^5.5.2",
+    "ajv": "^6.12.3",
     "bootstrap": "^4.3.1",
     "bootstrap.native": "^2.0.27",
     "claudia": "^5.9.0",
